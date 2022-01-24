@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block content %}
+<div class="row mt-2">
+  <div class="col-md-6 m-auto">
+    <div card card-body><form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="form-group mt-2">
+      <label for="titre" class="form-label">Titre:</label>
+      <input type="text" class="form-control" name="titre" />
+    </div>
+    <div class="form-group mt-2">
+      <label for="resume" class="form-label">Résumé:</label>
+      <input type="text" class="form-control" name="resume" />
+    </div>
+    <div class="form-group mt-2">
+      <label for="miniature" class="form-label">Miniature:</label>
+      <input type="file" class="form-control" name="image" />
+    </div>
+      <div class="form-group mt-2">
+        <label for="contenu" class="form-label">Contenu:</label>
+        <input type="text" class="form-control" name="contenu" />
+      </div>
+      <div class="form-group mt-2">
+        <label for="auteur" class="form-label">Auteur:</label>
+        <input type="text" class="form-control" name="auteur" />
+      </div>
+      <button class="btn btn-primary" type="submit">Enregistrer</button>
+    </form></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

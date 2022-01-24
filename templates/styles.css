@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Redressed&display=swap");
+
+.nav-style {
+  background-color: rgb(105, 151, 151);
+  font-family: '"Merriweather", Serif';
+  box-shadow: 1px 1px 3px rgb(27, 63, 63);
+}
+
+.nav-style .nav-link:hover {
+  background-color: rgb(27, 63, 63);
+  color: white;
+}
+.banner {
+  background: linear-gradient(
+    rgb(229, 248, 248),
+    rgb(229, 248, 248),
+    rgb(105, 151, 151)
+  );
+  background-size: cover;
+  position: relative;
+}
+
+.title {
+  font-family: "Redressed";
+  text-align: center;
+  font-size: 18px;
+}
+
+.btn-b {
+  background-color: rgb(27, 63, 63);
+  border: none;
+}
+.btn-b:hover {
+  background-color: black;
+}
+
+.cb1 {
+  color: black;
+  background-color: rgb(105, 151, 151);
+  border: 1px solid #000;
+}
+
+.img {
+  height: 200px;
+}
+
+.head-img {
+  border-radius: 50% / 50%;
+  height: 180px;
+  width: 180px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

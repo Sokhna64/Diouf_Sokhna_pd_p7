@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+ {% block content %}
+ <section
+ class="banner d-flex justify-content-center align-items-center pt-5"
+>
+ <div class="container">
+   <div class="col-md-12 title">
+    <img src="{{article.miniature.url}}" />
+    <h1 class="text-capitalize">{{article.titre}}</h1> 
+     <p class="card-text">
+       <small class="text-decoration-underline"
+         >{{article.auteur}}</small
+       >
+       <small> Créé le {{article.date_creation}}</small>
+     </p>  
+   
+     <p class="text-start">
+       {{article.contenu}}
+     </p>
+
+     <a href="{% url 'edit' article.id %}" class="btn btn-primary btn-b" 
+         >Modifier</a
+       >
+    
+   </div>
+ </div> 
+ </div>
+</div>
+</section>
+
+ {% endblock %}
