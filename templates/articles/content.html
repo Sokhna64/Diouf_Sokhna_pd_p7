@@ -4,24 +4,34 @@
  class="banner d-flex justify-content-center align-items-center pt-5"
 >
  <div class="container">
-   <div class="col-md-12 title">
-    <img src="{{article.miniature.url}}" />
-    <h1 class="text-capitalize">{{article.titre}}</h1> 
+   <div class="col-md-12 ">
+    <div class=" text-center">
+      <img
+        class="rounded-circle mb-2"
+        src="{{article.miniature.url}}"
+        alt=""
+        width="250"
+        height="200"
+      />
+    <h1 class="text-capitalize title">{{article.titre}}</h1> 
      <p class="card-text">
        <small class="text-decoration-underline"
-         >{{article.auteur}}</small
-       >
+         > 
+         Par {{user.username}} </small>
        <small> Créé le {{article.date_creation}}</small>
      </p>  
    
      <p class="text-start">
        {{article.contenu}}
      </p>
-
-     <a href="{% url 'edit' article.id %}" class="btn btn-primary btn-b" 
+     <div class="mt-2">
+     <a href="{% url 'edit' article.id %}" class="btn b btn-style" 
          >Modifier</a
        >
-    
+       <a href="{% url 'delete' article.id %}" class="btn  btn-style" 
+         >Supprimer</a
+       >
+      </div>
    </div>
  </div> 
  </div>

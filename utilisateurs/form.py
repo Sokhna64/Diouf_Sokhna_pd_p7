@@ -1,5 +1,4 @@
 from django import forms
-# class django pour creer un utilisateur, la class registration va heriter de cette classe
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 

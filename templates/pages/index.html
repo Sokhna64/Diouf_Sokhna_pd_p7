@@ -1,42 +1,71 @@
 {% extends "base.html" %} {% block content %}
-<section class="banner d-flex justify-content-center align-items-center pt-5">
-  <div class="container">
+<section class="banner d-flex justify-content-center align-items-center pt-2">
+  <div class="card card-style">
     <div class="row">
       {% if desc %} {% for descs in desc %}
-
-      <div class="col-md-12 title">
-        <h1 class="text-capitalize">{{ descs.titre }}</h1>
-        <p class="text-start">{{descs.contenu}}</p>
-        <div class="d-grid col-4 mx-auto">
-          <a href="add.html" class="btn btn-primary btn-b" role="button"
-            >Enregistrez votre article</a
-          >
+      <div class="px-4 py-5 text-center">
+        <img
+          class="rounded-circle mb-2"
+          src="{{descs.image.url}}"
+          alt=""
+          width="150"
+          height="120"
+        />
+        <div class="col-md-12">
+          <h1 class="text-capitalize title">{{ descs.titre }}</h1>
+          <p class="text-start fst-normal">{{descs.intro}}</p>
+          <div class="d-grid col-4 mx-auto">
+            <a href="{% url 'new' %}" class="btn btn-style" role="button"
+              >Enregistrez votre article</a
+            >
+          </div>
         </div>
       </div>
       {% endfor %} {% endif %}
     </div>
   </div>
 </section>
-<div class="col mt-2">
+
+<div class="row row-cols-md-3 mt-4 g-4">
   {% if articles %} {% for article in articles %}
-  <div class="card cb1">
-    <div class="card-body">
-      <h5 class="card-title">{{article.titre}}</h5>
-      <img src="{{article.miniature.url}}" />
-      <p class="card-text">{{article.resume}}</p>
-      <p class="card-text">
-        <small class="text-decoration-underline">{{article.auteur}}</small>
-      </p>
-    </div>
-    <div class="d-grid col-4 mx-auto">
-      <a
-        href="{% url 'content' article.id %}"
-        class="btn btn-primary btn-b"
-        role="button"
-        >Lire plus</a
-      >
+  <div class="col">
+    <div class="card card-style h-100 mb-2">
+      <img src="{{article.miniature.url}}" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{article.titre}}</h5>
+        <p class="card-text">{{article.resume}}</p>
+        <p class="card-text">
+          <small class="text-decoration-none text_white"
+            >Par {{user.username}}</small
+          >
+          <small class="text-muted"> Le {{article.date_creation}}</small>
+        </p>
+        <a
+          href="{% url 'content' article.id %}"
+          class="btn btn-primary btn-style"
+          role="button"
+          >Lire plus</a
+        >
+      </div>
     </div>
   </div>
+
+  <!-- <a
+            href="{% url 'content' article.id %}"
+            class="btn btn-primary btn-b"
+            role="button"
+            >Lire plus</a
+          > -->
+
   {% endfor %} {% endif %}
 </div>
+<p class="text-end mt-3">
+  <span
+    ><a
+      href="{% url 'listarticles' %}"
+      class="text-decoration-underline text-white"
+      >Voir plus -->
+    </a></span
+  >
+</p>
 {% endblock %}

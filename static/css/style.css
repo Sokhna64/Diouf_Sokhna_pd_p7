@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Redressed&display=swap");
+
+body {
+  color: white;
+  background-color: #06021b;
+}
+.nav-style {
+  box-shadow: 1px 1px 3px #c2c0d6;
+}
+.nav-link {
+  color: white;
+}
+
+.btn-style {
+  background-color: white;
+  color: #06021b;
+}
+.btn-style:hover {
+  background-color: #06021b;
+  color: white;
+  border-color: white;
+}
+
+.card-style {
+  background-color: rgba(6, 2, 27, 0.5);
+  box-shadow: 1px 1px 3px #c2c0d6;
+}
+
+.title {
+  font-family: "Redressed";
+  text-align: center;
+}

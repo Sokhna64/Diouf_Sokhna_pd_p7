@@ -1,63 +1,72 @@
 import contextlib
+
 from datetime import datetime
 import logging
 from django.shortcuts import get_object_or_404, render, redirect
+from django.template import context
 from .models import Article, Description
 from django.contrib.auth.decorators import login_required
+from .form import Editform
 
 
+@login_required(login_url="/login/")
 def home(request):
+    user = request.user
     desc = Description.objects.all()
-    articles = Article.objects.all()
+    articles = Article.objects.filter(user=user)
     return render(request, "pages/index.html", {"desc": desc, "articles": articles})
 
 
 def about(request):
-    return render(request, "pages/about.html")
+    desc = Description.objects.all()
+    return render(request, "pages/about.html", {"desc": desc})
 
 
 @login_required(login_url="/login")
 def listarticles(request):
     user = request.user
-    print("user", user)
     articles = Article.objects.filter(user=user)
-    return render(request, "articles/listarticles.html", {"articles": articles})
+    context = {"articles": articles}
+    return render(request, "articles/listarticles.html", context)
 
 
 @login_required(login_url="/login/")
 def createArticle(request):
-    if request.method == "POST":
-        user = request.user
-        auteur = request.POST['auteur']
-        titre = request.POST['titre']
-        resume = request.POST['resume']
-        contenu = request.POST['contenu']
-        miniature = request.FILES['image']
-        article = Article.objects.create(
-            user=user, auteur=auteur, titre=titre, resume=resume, contenu=contenu, miniature=miniature)
-        article.save()
+    user = request.user
+    form = Editform(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
         return redirect("/articles/")
-
-    return render(request, "articles/new.html")
+    context = {"form": form, "user": user}
+    return render(request, "articles/new.html", context)
 
 
 @login_required(login_url="/login/")
 def contentArticle(request, id):
+    user = request.user
     article = get_object_or_404(Article, id=id)
-    return render(request, "articles/content.html", {"article": article})
+    context = {"article": article, "user": user}
+    return render(request, "articles/content.html", context)
 
 
+@login_required(login_url="/login/")
 def editArticle(request, id):
     article = get_object_or_404(Article, id=id)
     if request.method == "POST":
+        form = Editform(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect("/articles/")
+    else:
+        form = Editform(instance=article)
+    context = {"article": article, "form": form}
+    return render(request, "articles/edit.html", context)
 
-        auteur = request.POST['auteur']
-        titre = request.POST['titre']
-        resume = request.POST['resume']
-        contenu = request.POST['contenu']
-        miniature = request.FILES['image']
-        Article.objects.filter(pk=article.id).update(
-            auteur=auteur, titre=titre, resume=resume, contenu=contenu, miniature=miniature)
+
+@login_required(login_url="/login/")
+def deleteArticle(request, id):
+    article = get_object_or_404(Article, id=id)
+    if request.method == "POST":
+        article.delete()
         return redirect("/articles/")
-
-    return render(request, "articles/edit.html", {"article": article})
+    return render(request, "articles/delete.html", {"article": article})

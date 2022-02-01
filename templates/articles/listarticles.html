@@ -1,27 +1,37 @@
 {% extends "base.html" %} {% block content %}
-<div class="mt-2">
-  <a href="{% url 'new' %}" class="btn btn-primary">Nouvel Article</a>
-</div>
-<div class="col">
-  {% if articles %} {% for article in articles %}
-  <div class="card cb1">
-    <div class="card-body">
-      <h5 class="card-title">{{article.titre}}</h5>
-      <img src="{{article.miniature.url}}" />
-      <p class="card-text">{{article.resume}}</p>
-      <p class="card-text">
-        <small class="text-decoration-underline">{{article.auteur}}</small>
-      </p>
-    </div>
-    <div class="d-grid col-4 mx-auto">
-      <a
-        href="{% url 'content' article.id %}"
-        class="btn btn-primary btn-b"
-        role="button"
-        >Lire plus</a
-      >
-    </div>
+<div class="card text-center mt-4 card-style">
+  <div class="card-body">
+    <h5 class="card-title">Nos articles</h5>
+    <p class="card-text">Chaque voix compte, Osons s'exprimer</p>
+    
   </div>
-  {% endfor %} {% endif %}
 </div>
-{% endblock %}
+<div class="row row-cols-md-3 mt-4 g-4">
+    {% if articles %} {% for article in articles %}
+    <div class="col">
+      <div class="card card-style h-100">
+        <img src="{{article.miniature.url}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{article.titre}}</h5>
+          <p class="card-text">{{article.resume}}</p>
+          <p class="card-text">
+            <small class="text-decoration-underline"
+              >Par {{user.username}}</small
+            >
+            <small class="text-muted"> Le {{article.date_creation}}</small>
+          </p>
+          <a
+            href="{% url 'content' article.id %}"
+            class="btn btn-primary btn-style"
+            role="button"
+            >Lire plus</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% endif %}
+  </div>
+  
+
+  {% endblock %}
+</div>

@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from .form import LoginForm, RegisterForm
+from django.contrib import messages
 
 
 def auth(request):
@@ -12,7 +13,7 @@ def auth(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("/articles/")
+            return redirect("/")
 
     return render(request, "users/auth.html", {"form": form})
 
@@ -25,6 +26,7 @@ def registration(request):
             username = form.cleaned_data.get("username")
             row_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=row_password)
+            login(request, user)
             return redirect("/login/")
     else:
         form = RegisterForm
