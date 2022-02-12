@@ -14,14 +14,14 @@
         <div class="col-md-12">
           <h1 class="text-capitalize title">{{ descs.titre }}</h1>
           <p class="text-start fst-normal">{{descs.intro}}</p>
-          <div class="d-grid col-4 mx-auto">
-            <a href="{% url 'new' %}" class="btn btn-style" role="button"
-              >Enregistrez votre article</a
-            >
-          </div>
         </div>
       </div>
       {% endfor %} {% endif %}
+      <div class="d-grid col-4 mx-auto text-center">
+        <a href="{% url 'new' %}" class="btn btn-style" role="button"
+          >Enregistrez votre article</a
+        >
+      </div>
     </div>
   </div>
 </section>
