@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-ucf1x2v3wms^e6#el5gr2qa*&t=1c&!iqcw%*_v_1u%eb-2fmz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['blogdesokhna.herokuapp.com']
+ALLOWED_HOSTS = ['blogdesokhna.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
