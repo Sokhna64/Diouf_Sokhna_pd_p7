@@ -5,9 +5,9 @@
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }} 
-        <h2> Voulez-vous vraiment supprimer cet article ?</h2>
-      <button class="btn btn-style" type="submit">OUI</button>
-      <a href="{% url 'content' article.id %}" class="btn btn-style">NON</a>
+        <h2> Voulez-vous vraiment supprimer cet article ?</h2><br><br>
+      <button class="btn btn-style px-5" type="submit">OUI</button>
+      <a href="{% url 'content' article.id %}" class="btn btn-style px-5 ">NON</a>
 
     </form></div>
     </div>

@@ -5,15 +5,47 @@
       {% if desc %} {% for descs in desc %}
 
       <div class="col-md-12">
-        <h1 class="text-capitalize title">{{ descs.titre }}</h1>
-        <img
-          class="rounded-circle mb-2 mx-auto d-block"
-          src="{{descs.image.url}}"
-          alt=""
-          width="250"
-          height="200"
-        />
-        <p class="text-start">{{descs.apropos}}</p>
+        <h1 class="text-capitalize title">Des Voix À Travers Le Monde</h1>
+        <a href="{% url 'index' %}">
+          <img
+            class="rounded-circle mb-2 mx-auto d-block"
+            src="/media/images/logo.jpeg"
+            alt=""
+            width="250"
+            height="200"
+        /></a>
+        <p class="text-start">
+          L’ONG a été créée dans le souci de lutter contre la pauvreté sous
+          toutes ses formes, et surtout pour que les jeunes accomplissent
+          pleinement leur devoir de pousser leur pays au progrès afin de le
+          sortir de la précarité. Notre organisation répond aux besoins liés à
+          l’amélioration des conditions de vie des populations dans les domaines
+          socio-économique, éducatif, culturel, environnemental, santé, sport et
+          loisir, agricole. Nous proposons des solutions basées sur des
+          programmes/projets concrets qui améliorent les conditions de vie
+          humaine et contribuent au développement local durable à travers des
+          activités de sensibilisation ; IEC (information, éducation,
+          communication) ou CCC (communication, pour un changement de
+          comportement) ; des organisations des ateliers de formation ; des
+          actions communautaires de développement ; insertion des jeunes ;
+          création des activités génératrices de bénéfices ; la mobilisation
+          sociale autour des thèmes d’importance capitale de développement. Les
+          principaux projets que nous avons mis en œuvre depuis la création de
+          l’association sont cités dans l’ordre suivant : Reboisement villageois
+          ; Pépinière ; Nettoyages de plages, berges, fleuves, lacs, rivières ;
+          Aménagement et animation des plages ; Autonomisation de la femme ;
+          Alphabétisation ; Campagne pour la prévention des abus envers les
+          enfants ; Eveil et jeux ; Campagne d’éducation à la non-violence et la
+          culture de paix ; Solidarité numérique – Accès aux TIC pour Tous ;
+          Ecole de foot ; Tourisme solidaire ; Action culturelle en appui au
+          développement local ; Amélioration de l’accès à l’assainissement
+          individuel et collectif dans la commune de « Grand-Popo » ;
+          Conservation, reboisement, gestion et exploitation durable des
+          écosystèmes de la mangrove dans la commune de Grand-Popo ; Aménagement
+          et/ou amélioration des infrastructures d’activités de sport et des
+          loisirs « Pour Tous » à l‘échelon local ; Programme jeunes vie
+          associative, décentralisation et gouvernance locale.
+        </p>
       </div>
       {% endfor %} {% endif %}
     </div>

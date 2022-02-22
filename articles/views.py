@@ -2,6 +2,7 @@ import contextlib
 
 from datetime import datetime
 import logging
+from operator import ne
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template import context
 from .models import Article, Description
@@ -13,7 +14,7 @@ from .form import Editform
 def home(request):
     user = request.user
     desc = Description.objects.all()
-    articles = Article.objects.filter(user=user)
+    articles = Article.objects.all()[:6]
     return render(request, "pages/index.html", {"desc": desc, "articles": articles})
 
 
@@ -25,7 +26,7 @@ def about(request):
 @login_required(login_url="/login")
 def listarticles(request):
     user = request.user
-    articles = Article.objects.filter(user=user)
+    articles = Article.objects.all()
     context = {"articles": articles}
     return render(request, "articles/listarticles.html", context)
 
@@ -33,10 +34,15 @@ def listarticles(request):
 @login_required(login_url="/login/")
 def createArticle(request):
     user = request.user
-    form = Editform(request.POST, request.FILES)
-    if form.is_valid():
-        form.save()
-        return redirect("/articles/")
+    if request.method == "POST":
+        form = Editform(request.POST, request.FILES)
+        if form.is_valid():
+            newArticle = form.save(commit=False)
+            newArticle.user = user
+            newArticle.save()
+            return redirect("/articles/")
+    else:
+        form = Editform()
     context = {"form": form, "user": user}
     return render(request, "articles/new.html", context)
 
